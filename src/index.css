@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para impressão em formato retrato (padrão) */
+@media print {
+  @page {
+    size: portrait;
+    margin: 1.5cm;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.3;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  table {
+    width: 100% !important;
+    page-break-inside: auto;
+    border-collapse: collapse;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  th, td {
+    padding: 6px 8px !important;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    white-space: normal !important;
+    word-break: break-word;
+  }
+  
+  th {
+    font-weight: bold;
+    background-color: #f9fafb !important;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  thead {
+    display: table-header-group;
+  }
+  
+  tfoot {
+    display: table-footer-group;
+  }
+  
+  .whitespace-nowrap {
+    white-space: normal !important;
+  }
+  
+  h2 {
+    font-size: 18pt;
+    margin-bottom: 12pt;
+  }
+  
+  /* Ensure content fits within page */
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+  
+  /* Checkbox styling for print */
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    position: relative;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  
+  input[type="checkbox"]:checked:after {
+    content: "✓";
+    position: absolute;
+    top: -3px;
+    left: 2px;
+    font-size: 14px;
+  }
+}
+
+/* Estilos para impressão em formato paisagem */
+body.print-paisagem {
+  @media print {
+    @page {
+      size: landscape;
+      margin: 1.5cm;
+    }
+    
+    table {
+      font-size: 11pt;
+    }
+    
+    th, td {
+      padding: 5px 6px !important;
+    }
+  }
+}
+
+/* Estilos para impressão em formato de cupom fiscal */
+body.print-cupom {
+  @media print {
+    @page {
+      size: 80mm 297mm;
+      margin: 5mm;
+    }
+    
+    body {
+      font-size: 10pt;
+      width: 70mm;
+      margin: 0 auto;
+    }
+    
+    h2 {
+      font-size: 12pt;
+      text-align: center;
+      margin-bottom: 8pt;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    
+    th, td {
+      padding: 3px 4px !important;
+      font-size: 9pt;
+      word-break: break-word;
+      white-space: normal !important;
+      overflow: visible !important;
+    }
+    
+    thead th {
+      border-bottom: 1px dashed #000;
+      font-weight: bold;
+    }
+    
+    tbody td {
+      border-bottom: 1px dotted #ccc;
+    }
+    
+    .print-cupom\:static {
+      position: static !important;
+    }
+    
+    /* Adiciona linhas pontilhadas no topo e no final do cupom */
+    main::before,
+    main::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      border-top: 1px dashed #000;
+      margin: 10px 0;
+    }
+    
+    /* Ajustes específicos para o formato de cupom */
+    .min-w-full {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+    
+    .whitespace-nowrap {
+      white-space: normal !important;
+    }
+  }
+}
